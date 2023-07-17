@@ -1,0 +1,30 @@
+# fly.toml file generated for financely-api on 2023-06-04T12:40:12-03:00
+
+app = "financely-api"
+kill_signal = "SIGINT"
+kill_timeout = 5
+mounts = []
+primary_region = "gru"
+processes = []
+
+[[services]]
+  internal_port = 3000
+  processes = ["app"]
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[statics]]
+  guest_path = "/rails/public"
+  url_prefix = "/"

@@ -32,3 +32,5 @@ group :development do
   # gem "spring"
 end
 
+gem 'rack-cors'
+gem "dockerfile-rails", ">= 1.4", :group => :development
